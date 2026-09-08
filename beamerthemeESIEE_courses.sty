@@ -1,0 +1,123 @@
+% Style ESIEE_courses
+%\ProvidesPackage{ESIEE_courses}
+\mode<presentation>
+
+\newif\ifbeamer@theme@subsection
+\beamer@theme@subsectiontrue
+
+\DeclareOptionBeamer{footline}{\csname beamer@theme@footline@#1\endcsname}
+\DeclareOptionBeamer{subsection}[true]{\csname beamer@theme@subsection#1\endcsname}
+\ProcessOptionsBeamer
+
+% Specify the theme of the beamer
+\usecolortheme{ESIEE_courses}
+\usefonttheme{ESIEE_courses}
+\useoutertheme{ESIEE_courses}
+\useinnertheme{ESIEE_courses}
+
+% Loading required librairies
+% Encoding
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern}
+%\RequirePackage{upgreek} 	% Use of non-italic greek letters 
+
+%Appendix
+\RequirePackage{appendixnumberbeamer}
+
+% Gestion de tables
+\RequirePackage{multirow}
+
+% Boxes
+\RequirePackage[most]{tcolorbox}
+
+% References
+\RequirePackage{hyperref}
+
+% Usual logos
+\RequirePackage{fontawesome5}
+
+% Maths
+\RequirePackage{amsmath,amsthm, amsfonts, amssymb}
+\RequirePackage{mathtools}
+\RequirePackage[cal = cm, bb=ams, scr=rsfs]{mathalpha}
+
+% Captions & Subfigures
+\RequirePackage{caption, subcaption}
+
+% Timeline
+\RequirePackage{array, booktabs}
+
+% Math graphs
+\RequirePackage{tikz}
+\RequirePackage{tkz-euclide}
+\usetikzlibrary{calc,intersections,through,backgrounds}
+
+% Bibliography
+\RequirePackage[numbers,nonamebreak]{natbib}
+
+%Alignement d'images
+\RequirePackage[export]{adjustbox}
+
+% NewDocumentEnvironment
+\RequirePackage{xparse} 
+\RequirePackage{etoolbox}
+
+% Use the ’standalone’ package:
+\RequirePackage{standalone}
+
+% Basic definitions
+% Mise en valeur
+\renewcommand{\emph}[1]{\textcolor{background_color}{\textbf{#1}}}
+
+% Définition des couleurs de liens
+\hypersetup{
+    colorlinks = true,
+    breaklinks = true,
+    urlcolor = blue,
+    linkcolor = background_color,
+    citecolor = background_color
+}
+
+% Captions
+\captionsetup{font={it,tiny},labelfont={it,tiny}}
+
+% Timeline settings
+\newcommand{\foo}{\color{light_background}\makebox[0pt]{\textbullet}\hskip-0.5pt\vrule width 1pt\hspace{\labelsep}}
+
+\newcommand{\Hrule}[2][.]{%
+  \begingroup\color{#1}%
+  \hrule #2
+  \endgroup
+}
+
+
+%Définition de oui/non
+\newcommand{\oui}{\color{ForestGreen}\faIcon{check-circle}}
+\newcommand{\non}{\color{BrickRed}\faIcon{times-circle}}
+\newcommand{\temp}{\color{Violet}\faIcon{spinner}}
+
+% Cadenas
+\newcommand{\obli}{\faIcon{lock}}
+\newcommand{\poss}{\faIcon{unlock}}
+
+% Flèches
+\newcommand{\myarrow}{\textcolor{background_color}{$\rightarrow$}}
+
+% Degré Celsius
+\newcommand{\celsius}{$^\circ$C}
+
+% R
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Var}{\text{Var}}
+\newcommand{\wh}{\widehat}
+\newcommand{\indic}{\mathds{1}}
+\newcommand{\widebar}[1]{\overline{#1}}
+\newcommand{\card}{\text{card}}

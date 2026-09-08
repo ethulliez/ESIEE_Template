@@ -1,0 +1,124 @@
+\mode<presentation>
+
+% Requirement packages ----------------------------------------
+\RequirePackage[x11names,table,svgnames,dvipsnames]{xcolor}
+
+% Define some specific colors -----------------------------------
+% Main color : ESIEE blue
+\xdefinecolor{background_color}{RGB}{47,42,134}
+% Light main color
+\colorlet{light_background}{background_color!50!white}
+% Light main color
+\colorlet{dark_background}{background_color!50!black}
+% Text color over the theme color
+\xdefinecolor{maintext_color}{named}{white}
+
+% Math box colors
+% Example
+\xdefinecolor{ex_color}{named}{SlateGray4}
+% Proposition
+\xdefinecolor{prop_color}{named}{Firebrick4}
+% Proposition
+\xdefinecolor{demo_color}{named}{LightSkyBlue3}
+% Property
+\xdefinecolor{propri_color}{named}{RedViolet}
+% Definition
+\xdefinecolor{def_color}{named}{SeaGreen4}
+
+% Highlights colors
+\xdefinecolor{ForestGreen}{HTML}{009B55}
+\xdefinecolor{BrickRed}{HTML}{B6321C}
+\xdefinecolor{Violet}{HTML}{58429B}
+
+% Set the beamer colors -------------------------------------------
+
+% ---------------------------------------------------------------------
+% Color theme definition ---------------------------------------
+% ---------------------------------------------------------------------
+
+% Main theme color
+\setbeamercolor{main_theme}{%
+	fg=maintext_color,%
+	bg=background_color%
+}
+
+% Shaded main theme color
+\setbeamercolor{shaded_main_theme}{%
+	fg = maintext_color,%
+	bg = dark_background%
+}
+
+% Items of a list ---------------------------------------
+\setbeamercolor{item}{fg = background_color}
+
+% Captions ---------------------------------------
+\setbeamercolor{caption name}{fg = background_color} 
+
+% Footnotes ---------------------------------------
+\setbeamercolor{footnote}{
+	fg = background_color!50!black
+}
+
+% ---------------------------------------------------------------------
+% Create separate parts ---------------------------------------
+% ---------------------------------------------------------------------
+
+%Title Page --------------------------------------------------------
+\setbeamercolor{title page}{%
+	fg=maintext_color%
+}
+
+% Beamer title ----------------------------------------------------
+\setbeamercolor{title}{%
+	bg=background_color,%
+	fg=maintext_color%
+}
+
+% ---------------------------------------------------------------------
+% Define parts of the header  ---------------------------------
+% ---------------------------------------------------------------------
+% Défaut : paramètre pour tout le header
+\setbeamercolor{default_header}{
+	fg = maintext_color,%
+	bg = dark_background%
+}
+
+% Upper sep --------------------------------------------------------
+\setbeamercolor{upper separation line head}{%
+	parent=default_header
+}
+
+% Sections ---------------------------------------------------------
+\setbeamercolor{section in head/foot}{%
+	fg = maintext_color,%
+	bg = dark_background%
+}
+
+% Middle sep -------------------------------------------------------
+\setbeamercolor{middle separation line head}{%
+	parent=default_header
+}
+
+% Subsections -----------------------------------------------------
+\setbeamercolor{subsection in head/foot}{%
+	fg = maintext_color,%
+	bg = dark_background%
+}
+
+% Lower sep --------------------------------------------------------
+\setbeamercolor{lower separation line head}{%
+	parent=default_header
+}
+
+% ---------------------------------------------------------------------
+% Define parts of the footer  ----------------------------------
+% ---------------------------------------------------------------------
+\setbeamercolor{FootBox}{%
+	bg = dark_background,%
+	fg = light_background%
+}
+
+\setbeamercolor{author in head/foot}{parent=FootBox}
+\setbeamercolor{title in head/foot}{parent=FootBox}
+
+\mode<all>

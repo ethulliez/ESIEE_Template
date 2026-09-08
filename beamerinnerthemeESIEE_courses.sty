@@ -1,0 +1,223 @@
+\mode<presentation>
+
+\RequirePackage{ifthen}
+
+\setbeamertemplate{items}[circle]
+\setbeamertemplate{sections/subsections in toc}[circle]
+
+\newcommand{\currentsection}{}
+\let\oldsection\section
+\renewcommand{\section}[1]{\renewcommand{\currentsection}{#1}\oldsection{#1}}
+
+\newcommand{\btvfill}{\vskip0pt plus 1filll}
+
+% Define an institution logo -------------------------------------------
+\logo{
+    \includegraphics[height=0.7cm]{Images/ESIEE_Paris_Bleu.jpeg}\hspace*{0.3cm}
+}
+
+% Title page ----------------------------------------------------------
+\setbeamertemplate{title page}{
+	\centering
+	
+	\vskip 15px
+	
+	
+	\begin{beamercolorbox}
+		[center, colsep=10px, colsep*=0px]
+		{title}
+		\usebeamercolor{title}
+		\usebeamerfont{title}
+		\inserttitle
+	\end{beamercolorbox}
+	
+	\vskip 15px
+	
+	\begin{center}
+		% Author
+		\usebeamerfont{author}
+		\insertauthor
+		
+		\vskip 2ex
+		
+		% Institute
+		\usebeamerfont{institute}
+		\insertinstitute
+		
+		\vskip 2ex
+		
+		% Date
+		\usebeamerfont{date}
+		\insertdate
+	\end{center}
+}
+
+% Frame title ---------------------------------------------------------
+\setbeamertemplate{frametitle}{
+	% To erase the line between navigation and title
+	\vskip -1.5px
+	% Link Color
+	\hypersetup{linkcolor=maintext_color}
+	% Choose box color and font
+	\usebeamercolor{frame_title}
+	\usebeamerfont{frame_title}
+	% Make the box :
+	% Start the box at the very left of the page
+	% Text align : left
+	% Width : all of the page
+	% Skip 5 px on top and bottom inside the box, 0px outside
+	\noindent \begin{beamercolorbox}
+	[left, wd=\paperwidth, ht = 20pt,colsep=5px, colsep*=0px]
+	{main_theme}
+		% Add frame title
+		\insertframetitle
+	\end{beamercolorbox}
+	\vskip 0pt
+}
+
+% New section ---------------------------------------------------------
+\AtBeginSection[]{
+	\setbeamercolor{background canvas}{bg=background_color}
+	\begin{frame}[plain,b]
+		\usebeamerfont{newsectiontitle}
+		\textcolor{maintext_color}{\thesection. \currentsection}
+		\vspace{0.5\baselineskip}
+		\textcolor{maintext_color}{\hrule width0.8\textwidth}
+		\vspace{0.4\textheight}
+		\hfill
+		\begin{minipage}{0.35\textwidth}
+			\includegraphics[width=\textwidth]{Images/ESIEE_Paris_Blanc.png}
+		\end{minipage}
+		\vspace{1ex}
+	\end{frame}
+	\setbeamercolor{background canvas}{bg=maintext_color}
+}
+
+\AtBeginDocument{
+	% Première page
+	\setbeamercolor{background canvas}{bg=background_color}
+	\begin{frame}[plain]
+		\vfill
+		\vspace{0.5cm}
+		\titlepage
+		\vspace{0.5cm}
+		\vfill
+		\hfill
+		\begin{minipage}{0.35\textwidth}
+		\includegraphics[width=\textwidth]{Images/ESIEE_Paris_Blanc.png}
+		\end{minipage}
+	\end{frame}
+	\setbeamercolor{background canvas}{bg=maintext_color}
+}
+
+% --------------------------------------------------------------------------
+% Define default block -----------------------------------------------
+% --------------------------------------------------------------------------
+%Box par defaut
+\newenvironment{mytbox}[2][]{
+	\ifthenelse{#2=1}
+		{\begin{tcolorbox}[coltext=white, colback=background_color!90!white,
+		boxrule=1pt, colframe = background_color!50!black, title = #1]}
+		{\begin{tcolorbox}[coltext=black, colback=background_color!20!white,
+		boxrule=1pt, colframe = background_color!50!black,title = #1]}
+	}
+	{\end{tcolorbox}}
+% Appel par \mytbox["nom du cadre" si besoin]{Choix de la box}
+% Si 1 : la box est claire, sinon foncée.
+
+% --------------------------------------------------------------------------
+% Define math blocks ------------------------------------------------
+% --------------------------------------------------------------------------
+%Box pour définition
+\newcommand{\emphdef}[1]{\textcolor{def_color}{\textbf{#1}}}
+\newenvironment{tboxdefinition}[2][]{
+	\begin{tcolorbox}[coltext=black, colback=def_color!20!white,
+		boxrule=1pt, colframe = def_color,title = #1]
+	\hypersetup{citecolor=def_color}
+	\setbeamercolor{item}{fg = def_color}
+	\let\OldEmph\emph
+	\renewcommand{\emph}{\emphdef}
+	}
+	{
+	\let\emph\OldEmph
+	\setbeamercolor{item}{fg = background_color}
+	\hypersetup{citecolor=background_color}
+	\end{tcolorbox}
+	}
+
+\renewenvironment{definition}[1][]{\begin{tboxdefinition}[Définition \ifblank{#1}{}{ -- \textit{#1}}]{2}}{\end{tboxdefinition}}
+	
+%Box pour proposition
+\newcommand{\emphprop}[1]{\textcolor{prop_color}{\textbf{#1}}}
+\newenvironment{tboxproposition}[2][]{
+	\begin{tcolorbox}[coltext=black, colback=prop_color!20!white,
+		boxrule=1pt, colframe = prop_color!80!white,title = #1]
+	\hypersetup{citecolor=prop_color}
+	\setbeamercolor{item}{fg = prop_color}
+	\let\OldEmph\emph
+	\renewcommand{\emph}{\emphprop}
+	}
+	{
+	\let\emph\OldEmph
+	\setbeamercolor{item}{fg = background_color}
+	\hypersetup{citecolor=background_color}
+	\end{tcolorbox}
+	}
+\newenvironment{proposition}[1][]{\begin{tboxproposition}[Proposition \ifblank{#1}{}{ -- \textit{#1}}]{2}}{\end{tboxproposition}}
+
+%Box pour proposition
+\newcommand{\emphdemo}[1]{\textcolor{demo_color}{\textbf{#1}}}
+\newenvironment{tboxdemo}[2][]{
+	\begin{tcolorbox}[coltext=black, colback=demo_color!20!white,
+		boxrule=1pt, colframe = demo_color!80!white,title = #1]
+	\hypersetup{citecolor=demo_color}
+	\setbeamercolor{item}{fg = demo_color}
+	\let\OldEmph\emph
+	\renewcommand{\emph}{\emphdemo}
+	}
+	{
+	\let\emph\OldEmph
+	\setbeamercolor{item}{fg = background_color}
+	\hypersetup{citecolor=background_color}
+	\end{tcolorbox}
+	}
+\newenvironment{demonstration}[1][]{\begin{tboxdemo}[Démonstration \ifblank{#1}{}{ -- \textit{#1}}]{2}}{\hfill \textcolor{demo_color}{$\blacksquare$}\end{tboxdemo}}
+
+
+%Box pour propriete
+\newcommand{\emphpropri}[1]{\textcolor{propri_color}{\textbf{#1}}}
+\newenvironment{tboxpropriete}[2][]{
+	\begin{tcolorbox}[coltext=black, colback=propri_color!20!white,
+		boxrule=1pt, colframe = propri_color!80!white,title = #1]
+	\hypersetup{citecolor=propri_color}
+	\setbeamercolor{item}{fg = propri_color}
+	\let\OldEmph\emph
+	\renewcommand{\emph}{\emphpropri}
+	}
+	{
+	\let\emph\OldEmph
+	\setbeamercolor{item}{fg = background_color}
+	\hypersetup{citecolor=background_color}
+	\end{tcolorbox}
+	}
+\newenvironment{propriete}[1][]{\begin{tboxpropriete}[Propriété \ifblank{#1}{}{ -- \textit{#1}}]{2}}{\end{tboxpropriete}}
+	
+%Box pour exemple
+\newcommand{\emphex}[1]{\textcolor{ex_color}{\textbf{#1}}}
+\newenvironment{tboxexemple}[2][]{
+	\begin{tcolorbox}[coltext=black, colback=ex_color!20!white,
+		boxrule=1pt, colframe = ex_color!80!white,title = #1]
+	\hypersetup{citecolor=ex_color}
+	\setbeamercolor{item}{fg = ex_color}
+	\let\OldEmph\emph
+	\renewcommand{\emph}{\emphex}
+	}
+	{
+	\let\emph\OldEmph
+	\setbeamercolor{item}{fg = background_color}
+	\hypersetup{citecolor=background_color}
+	\end{tcolorbox}
+	}
+\newenvironment{exemple}[1][]{\begin{tboxexemple}[Exemple \ifblank{#1}{}{ -- \textit{#1}}]{2}}{\end{tboxexemple}}
+
+\mode<all>

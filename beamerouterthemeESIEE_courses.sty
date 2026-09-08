@@ -1,0 +1,129 @@
+\RequirePackage{hyperref}
+
+\def\beamer@theme@footline@empty{}
+\def\beamer@theme@footline@authorinstitute{
+  \defbeamertemplate*{footline}{miniframes theme}
+  {%
+    \begin{beamercolorbox}[colsep=1.5pt]{upper separation line foot}
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,%
+      leftskip=.3cm,rightskip=.3cm plus1fil]{author in head/foot}%
+      \leavevmode{\usebeamerfont{author in head/foot}\insertshortauthor}%
+      \hfill%
+      {\usebeamerfont{institute in head/foot}\usebeamercolor[fg]{institute in head/foot}\insertshortinstitute%
+      \ifbeamertemplateempty{page number in head/foot}{}{\qquad}%
+      \usebeamercolor[fg]{page number in head/foot}\usebeamerfont{page number in head/foot}\usebeamertemplate{page number in head/foot}%
+      }%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[colsep=1.5pt]{lower separation line foot}
+    \end{beamercolorbox}
+  }
+}
+\def\beamer@theme@footline@authortitle{
+  \defbeamertemplate*{footline}{miniframes theme}
+  {%
+    \begin{beamercolorbox}[colsep=1.5pt]{upper separation line foot}
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,%
+      leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+      \leavevmode{\usebeamerfont{title in head/foot}\insertshorttitle}%
+      \hfill%
+      {\usebeamerfont{author in head/foot}\usebeamercolor[fg]{author in head/foot}\insertshortauthor%
+      \ifbeamertemplateempty{page number in head/foot}{}{\qquad}%
+      \usebeamercolor[fg]{page number in head/foot}\usebeamerfont{page number in head/foot}\usebeamertemplate{page number in head/foot}%
+      }%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[colsep=1.5pt]{lower separation line foot}
+    \end{beamercolorbox}
+  }
+}
+\def\beamer@theme@footline@institutetitle{
+  \defbeamertemplate*{footline}{miniframes theme}
+  {%
+    \begin{beamercolorbox}[colsep=1.5pt]{upper separation line foot}
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,%
+      leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+      \leavevmode{\usebeamerfont{title in head/foot}\insertshorttitle}%
+      \hfill%
+      {\usebeamerfont{institute in head/foot}\usebeamercolor[fg]{institute in head/foot}\insertshortinstitute%
+      \ifbeamertemplateempty{page number in head/foot}{}{\qquad}%
+      \usebeamercolor[fg]{page number in head/foot}\usebeamerfont{page number in head/foot}\usebeamertemplate{page number in head/foot}%      
+      }%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[colsep=1.5pt]{lower separation line foot}
+    \end{beamercolorbox}
+  }
+}
+\def\beamer@theme@footline@authorinstitutetitle{
+  \defbeamertemplate*{footline}{miniframes theme}
+  {%
+    \begin{beamercolorbox}[colsep=1.5pt]{upper separation line foot}
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,%
+      leftskip=.3cm,rightskip=.3cm plus1fil]{author in head/foot}%
+      \leavevmode{\usebeamerfont{author in head/foot}\insertshortauthor}%
+      \hfill%
+      {\usebeamerfont{institute in head/foot}\usebeamercolor[fg]{institute in head/foot}\insertshortinstitute}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,%
+      leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+      {\usebeamerfont{title in head/foot}\insertshorttitle}\hfill{\usebeamercolor[fg]{page number in head/foot}\usebeamerfont{page number in head/foot}\usebeamertemplate{page number in head/foot}}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[colsep=1.5pt]{lower separation line foot}
+    \end{beamercolorbox}
+  }
+}
+
+% ---------------------------------------------------------------------
+%  Header ----------------------------------------------------------
+% ---------------------------------------------------------------------
+\setbeamertemplate{headline}{%
+  % Make sections appears in a contrasted color
+  \hypersetup{linkcolor=maintext_color}
+  % Create sections' line
+  \begin{beamercolorbox}{section in head/foot}
+  	\vskip2pt%
+   	\insertsectionnavigationhorizontal{\paperwidth}{}{}%
+   	\vskip2pt
+  \end{beamercolorbox}%
+  % If subsection is true (that is, if it is part of the headline)
+   \ifbeamer@theme@subsection%
+    	\vspace{-1pt}%
+   	 \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,%
+  	         leftskip=.3cm,rightskip=.3cm plus1fil]{subsection in head/foot}%
+  	    	\usebeamerfont{subsection in head/foot}%
+  	    	\insertsubsectionhead%
+ 	   \end{beamercolorbox}%
+   \fi
+}
+
+% Footer --------------------------------------------------------------
+% Define navigation symbols at the bottom of the page ;
+% Erase the default symbols 
+\setbeamertemplate{navigation symbols}{}
+
+% Box
+\setbeamertemplate{footline}{%
+	\hypersetup{linkcolor=light_background}
+	\begin{beamercolorbox}
+	[center, colsep = 2px,leftskip=3px,rightskip=3px]
+	{FootBox}
+	\begin{minipage}{0.32\textwidth}
+	\insertshorttitle
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.32\textwidth}
+	\centering
+	\insertshortauthor
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.32\textwidth}
+	\raggedleft
+	\insertframenumber\ / \inserttotalframenumber
+	\end{minipage}
+    \end{beamercolorbox}
+    \vskip 0pt
+}
+
+\mode<all>
