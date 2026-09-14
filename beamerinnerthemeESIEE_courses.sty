@@ -16,6 +16,12 @@
     \includegraphics[height=0.7cm]{Images/ESIEE_Paris_Bleu.jpeg}\hspace*{0.3cm}
 }
 
+% Define e-mail
+
+\newcommand{\email}[1]{\def\insertemail{\url{#1}}}
+
+\def\insertemail{} 
+
 % Title page ----------------------------------------------------------
 \setbeamertemplate{title page}{
 	\centering
@@ -36,7 +42,10 @@
 	\begin{center}
 		% Author
 		\usebeamerfont{author}
-		\insertauthor
+		\insertauthor\\
+		\usebeamerfont{email}
+		\hypersetup{urlcolor=maintext_color}
+		\insertemail
 		
 		\vskip 2ex
 		
